@@ -22,8 +22,6 @@ def essentials(root,c,n,m):
     finish = random.choice(edge)
     while start==finish:
         finish = random.choice(edge)
-    print(start)
-    print(finish)
     if start[0]==1:
         drawPathBlock(c,10+(1000-min(n1,m1)*20*n)//2+min(n1,m1)*20*(start[0]-1),10+(800-min(n1,m1)*20*m)//2+min(n1,m1)*20*start[1],min(n1,m1)*20)
     elif start[0]==n-2:
@@ -52,17 +50,38 @@ def essentials(root,c,n,m):
     elif finish[1]==m-3:
         drawPathBlock(c,10+(1000-min(n1,m1)*20*n)//2+min(n1,m1)*20*(finish[0]),10+(800-min(n1,m1)*20*m)//2+min(n1,m1)*20*(finish[1]+1),min(n1,m1)*20)
         drawPathBlock(c,10+(1000-min(n1,m1)*20*n)//2+min(n1,m1)*20*(finish[0]),10+(800-min(n1,m1)*20*m)//2+min(n1,m1)*20*(finish[1]+2),min(n1,m1)*20)
-def graph(root,c,n,m,graph):
-    pass
+    return [start,finish,count]
 
+def graph(root,c,n,m,graph):
+    n1 = 50/n
+    m1 = 40/m
+    nx = (n-abs(n%2-1))//2
+    for i in range(len(graph)):
+        for j in range(len(graph[i])):
+            if graph[i][j]!=10**9:
+                if i-1==j:
+                    y = (i//nx)*2 +1
+                    x = (i%nx)*2 
+                elif i+1==j:
+                    y = (i//nx)*2 +1
+                    x = (i%nx)*2 +2
+                elif i<j:
+                    y = (i//nx)*2 +2
+                    x = (i%nx)*2 +1
+                elif i>j:
+                    y = (i//nx)*2
+                    x = (i%nx)*2 +1
+                drawPathBlock(c,10+(1000-min(n1,m1)*20*n)//2+min(n1,m1)*20*(x),10+(800-min(n1,m1)*20*m)//2+min(n1,m1)*20*(y),min(n1,m1)*20)
+            
 def drawFrame(c):
-    c.create_rectangle(0,0,10,820,fill="black")
-    c.create_rectangle(1010,0,1020,820,fill="black")
+    c.create_rectangle(0,0,10,870,fill="black")
+    c.create_rectangle(1010,0,1020,870,fill="black")
     c.create_rectangle(0,0,1020,10,fill="black")
+    c.create_rectangle(0,860,1020,870,fill="black")
     c.create_rectangle(0,810,1020,820,fill="black")
 
-def drawPathBlock(c,x,y,size):
-    c.create_rectangle(x,y,x+size,y+size,fill="PaleGreen",outline="black")
+def drawPathBlock(c,x,y,size,color="PaleGreen"):
+    c.create_rectangle(x,y,x+size,y+size,fill=color,outline="black")
 
 def drawWallBlock(c,x,y,size):
     c.create_rectangle(x,y,x+size,y+size,fill="green",outline="black")    
