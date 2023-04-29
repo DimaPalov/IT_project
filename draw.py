@@ -3,7 +3,7 @@ import random
 
 everything = []
 
-def essentials(root,c,n,m): #draws frame and some parts of the maze
+def essentials(root,c,n,m,start=-1,finish=-1): #draws frame and some parts of the maze
     frame(c)
     n1 = 50/n
     m1 = 40/m
@@ -19,10 +19,11 @@ def essentials(root,c,n,m): #draws frame and some parts of the maze
             else:
                 thing = drawWallBlock(c,10+(1000-min(n1,m1)*20*n)//2+min(n1,m1)*20*i,10+(800-min(n1,m1)*20*m)//2+min(n1,m1)*20*j,min(n1,m1)*20)
             everything.append(thing)
-    start = random.choice(edge)
-    finish = random.choice(edge)
-    while start==finish:
+    if start==-1 and finish==-1:
+        start = random.choice(edge)
         finish = random.choice(edge)
+        while start==finish:
+            finish = random.choice(edge)
     drawExit(c,n,m,start,finish)
     return [start,finish]
 
@@ -89,13 +90,13 @@ def drawWallBlock(c,x,y,size): #draws a wall square
     thing = c.create_rectangle(x,y,x+size,y+size,fill="green",outline="black")
     return thing
 
-def deleteAll(c):
+def deleteAll(c): #deletes every element of previous maze
     global everything
     for item in everything:
         c.delete(item)
     everything = []
 
-def drawExit(c,n,m,start,finish,color="PaleGreen"):
+def drawExit(c,n,m,start,finish,color="PaleGreen"): #draws exits of the maze
     n1 = 50/n
     m1 = 40/m
     if start[0]==1:
