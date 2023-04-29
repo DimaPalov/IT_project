@@ -1,6 +1,0 @@
-The program can generate mazes from 5x5 to 100x100 (pictures 1 and 3)
-If a user tries to generate a maze smaller or bigger than that, the maze won't generate (pictures 2 and 4)
-The program can show the path between start and finish (pictures 5 and 6)
-You can save mazes you like (picture 7)
-You can open previously saved mazes (picture 8)
-As a result, you get the same maze you've saved (picture 9)
