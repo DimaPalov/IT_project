@@ -1,1 +1,5 @@
-python
+python 3
+tkinter (installed by default with python)
+random (installed by default with python)
+struct (istalled by default with python)
+math (istalled by default with python)
