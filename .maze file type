@@ -1,0 +1,13 @@
+maze signature (4 bytes)
+size of the file (4 bytes)
+start of the path x coordinate (4 bytes)
+start of the path y coordinate (4 bytes)
+start of the path number (4 bytes)
+end of the path x coordinate (4 bytes)
+end of the path y coordinate (4 bytes)
+end of the path number (4 bytes)
+width of the maze (4 bytes)
+height of the maze (4 bytes)
+Adjacency matrix of the maze:
+255 - no direct path between these graph nodes
+1 - direct path between these graph nodes
